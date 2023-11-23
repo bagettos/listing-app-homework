@@ -18,7 +18,7 @@
       <tbody>
         <tr
           *ngFor="let user of userList; let i = index"
-          [ngClass]="{ 'table-primary': i % 2 == 1 }"
+          [ngClass]="{ 'table-danger': i % 2 == 1 }"
         >
           <ng-container *ngIf="user.deletedUser === false">
             <th scope="row">{{ user.id }}</th>
