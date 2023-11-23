@@ -1,0 +1,52 @@
+<div class="container-md">
+  <div class="row text-center">
+    <h2>Felhasználók listája:</h2>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Vezetéknév</th>
+          <th scope="col">Keresztnév</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Lejárati Dátum</th>
+          <th scope="col">Fizetés</th>
+          <th scope="col">Akciógombok</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let user of userList; let i = index"
+          [ngClass]="{ 'table-primary': i % 2 == 1 }"
+        >
+          <ng-container *ngIf="user.deletedUser === false">
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.first_name | titlecase }}</td>
+            <td>{{ user.last_name | uppercase | slice : 0 : 2 }}</td>
+            <td>{{ user.email | lowercase }}</td>
+            <td>{{ user.expiration_date | date : "y MMMM dd" }}</td>
+            <td>{{ user.salary | currency }}</td>
+            <td>
+              <button
+                (click)="deleteUser(user)"
+                type="button"
+                class="btn btn-danger"
+              >
+                Törlés
+              </button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container d-flex justify-content-around">
+    <button (click)="showTheEvens()" type="button" class="btn btn-dark">
+      Páros számú
+    </button>
+    <button (click)="showTheOdds()" type="button" class="btn btn-info">
+      Páratlan számú
+    </button>
+  </div>
+</div>
